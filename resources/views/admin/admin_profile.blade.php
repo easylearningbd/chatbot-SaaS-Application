@@ -13,7 +13,9 @@
 
         <div class="card-body">
              
-<form>
+<form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
+    @csrf
+
     <div class="row g-2">
         <div class="mb-3 col-md-6">
             <label for="inputEmail4" class="form-label">Name</label>
@@ -42,7 +44,7 @@
     </div> 
 
      <div class="mb-3 col-md-6">
-       <img id="showImage" src="{{ (!empty($proflileData->photo)) ? url('upload/admin_image/'.$proflileData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl" style="width: 100px; height: 100px;" >
+       <img id="showImage" src="{{ (!empty($proflileData->photo)) ? url('upload/admin_images/'.$proflileData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl" style="width: 100px; height: 100px;" >
         
     </div> 
 
