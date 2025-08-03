@@ -79,15 +79,19 @@
                             </button>
                         </div>
 
+    @php
+      $id = Auth::user()->id;
+      $proflileData = App\Models\User::find($id); 
+    @endphp                    
                         <!-- User Dropdown -->
 <div class="topbar-item nav-user">
     <div class="dropdown">
         <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown"
             data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
-            <img src="{{ asset('backend/assets/images/users/avatar-1.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex"
+            <img src="{{ (!empty($proflileData->photo)) ? url('upload/admin_images/'.$proflileData->photo) : url('upload/no_image.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex"
                 alt="user-image">
             <span class="d-lg-flex flex-column gap-1 d-none">
-                <h5 class="my-0">Tom Werner</h5>
+                <h5 class="my-0">{{ $proflileData->name }}</h5>
             </span>
             <i class="ri-arrow-down-s-line d-none d-lg-block align-middle ms-1"></i>
         </a>
