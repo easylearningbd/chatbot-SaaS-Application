@@ -1,5 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin') 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
 <div class="page-container">
 <div class="row">
 <div class="col-12">
@@ -35,12 +38,17 @@
 
      <div class="mb-3 col-md-6">
         <label for="inputAddress" class="form-label">Profile Image </label>
-        <input type="file" class="form-control" name="photo" >
+        <input type="file" class="form-control" name="photo" id="image" >
+    </div> 
+
+     <div class="mb-3 col-md-6">
+       <img id="showImage" src="{{ (!empty($proflileData->photo)) ? url('upload/admin_image/'.$proflileData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl" style="width: 100px; height: 100px;" >
+        
     </div> 
 
      </div>
 
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
         </div> <!-- end card-body -->
     </div> <!-- end card-->
@@ -50,4 +58,22 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        })
+    })
+
+</script>
+
+
+
+
+
 @endsection
