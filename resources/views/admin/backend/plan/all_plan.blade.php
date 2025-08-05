@@ -13,7 +13,7 @@
                     </div>
                 </div>
 
-                <a href="apps-invoice-create.html" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add Plan</a>
+                <a href="{{ route('add.plans') }}" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add Plan</a>
             </div>
 
 <div class="table-responsive">
