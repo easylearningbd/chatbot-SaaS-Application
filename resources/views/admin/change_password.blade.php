@@ -13,14 +13,14 @@
 
         <div class="card-body">
              
-<form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('admin.password.update') }}" method="post" enctype="multipart/form-data">
     @csrf
 
     <div class="row g-2">
         
     <div class="mb-3 col-md-8">
         <label for="old_password" class="form-label">Old Password</label>
-        <input type="password" name="old_password" class="form-control @error('old_password') is invalid @enderror" id="old_password" >
+        <input type="password" name="old_password" class="form-control @error('old_password') is-invalid @enderror" id="old_password" >
         @error('old_password')
             <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -28,7 +28,7 @@
 
  <div class="mb-3 col-md-8">
         <label for="new_password" class="form-label">New Password</label>
-        <input type="password" name="new_password" class="form-control @error('new_password') is invalid @enderror" id="new_password" >
+        <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="new_password" >
         @error('new_password')
             <span class="text-danger">{{ $message }}</span>
         @enderror
