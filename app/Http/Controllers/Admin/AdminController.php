@@ -71,6 +71,11 @@ public function AdminLogout(Request $request){
      }
       //End Private Method 
 
+    public function AdminChangePassword(){
+        return view('admin.change_password');
+    }
+    //End Method 
+
 
 
 }
