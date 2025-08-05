@@ -46,13 +46,18 @@
 
         <div class="mb-3">
             <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control"
-                placeholder="Enter your email">
+            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email">
+       @error('email')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password">
+             @error('password')
+            <span class="text-danger">{{ $message }}</span>
+             @enderror
         </div>
 
         <div class="d-flex justify-content-between mb-3">
