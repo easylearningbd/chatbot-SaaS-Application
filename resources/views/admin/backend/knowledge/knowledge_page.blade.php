@@ -78,7 +78,37 @@
 
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const uploadDocumentForm = document.getElementById('uploadDocumentForm');
+    const documentsTableBody = document.getElementById('documentsTableBody');
+    const documentsLoadingSpinner = document.getElementById('documentsLoadingSpinner');
+    const uploadMessage = document.getElementById('uploadMessage');
+    const deleteMessage = document.getElementById('deleteMessage');
 
+    function getCsrfToken(){
+        const token = document.querySelector('meta[name="csrf-token"]')?.content;
+        if (!token) {
+            console.error('CSRF Totken not found');
+            return null;
+        }
+        return token;
+    }
+
+    async function fetchDocuments(){
+        
+    }
+
+
+
+
+
+})
+
+
+
+
+</script>
 
 
 
