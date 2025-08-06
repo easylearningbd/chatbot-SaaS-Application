@@ -156,11 +156,24 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const data = await response.json();
 
+        if (response.ok) {
+            uploadMessage.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+            this.reset();
+            fetchDocuments(); 
+        } else {
+            let errorMessage = 'An error occurred';
+            if (data.message) {
+                errorMessage = data.message;
+            } else if (data.errors) {
+                errorMessage = Object.values(data.errors).flat().join('<br>');
+            }
+            uploadMessage.innerHTML = `<div class="alert alert-danger">${errorMessage}</div>`;
+        } 
 
         } catch (error) {
-            
-        }
- 
+            console.error('Error uploading documents', error);
+            uploadMessage.innerHTML = `<div class="alert alert-danger">Failed to upload document. Plz try again </div>`;
+        } 
 
     });
     /// End submit Method 
@@ -169,9 +182,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-})
-
-
+}); 
 
 
 </script>
