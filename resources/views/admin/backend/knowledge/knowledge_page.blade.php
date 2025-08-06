@@ -53,14 +53,8 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody id="documentsTableBody">
-            <td>file name</td>
-            <td><span class="badge bg-danger">processed</span></td>
-            <td>12/5/25</td>
-            <td>
-                <button class="btn btn-sm btn-danger delete-document-btn">Delete</button>
-            </td>
-
+        <tbody id="documentsTableBody"> 
+            {{-- load all data  --}}
         </tbody>
 
     </table>
@@ -96,8 +90,43 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     async function fetchDocuments(){
+        documentsLoadingSpinner.classList.add('active')
+        documentsTableBody.innerHTML = '';
+
+        try {
+            const response = await fetch('/knowledge-documents',{
+                headers: {
+                    'Accept' : 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('HTTP ERRORS');
+            }
+
+            const documents = await response.json();
+
+            documents.forEach(doc => {
+                const row = documentsTableBody.insertRow();
+                row.innerHTML = ` 
+            <td>${doc.file_name}</td>
+
+            <td><span class="badge ${doc.status === 'processed' ? 'bg-success' : doc.status === 'pending' ? 'bg-warning text-dark' : 'bg-danger'}    ">${doc.status}</span></td>
+
+            <td> ${new Date(doc.created_at).toLocalDateString()} </td>
+            <td>
+                <button class="btn btn-sm btn-danger delete-document-btn" data-id="${doc.id}" ${doc.status === 'processing' ? 'disabled' : ''} >Delete</button>
+            </td> 
+                `   
+            });
+            
+        } catch (error) {
+            
+        }
         
     }
+    /// End fetchDocuments Method 
 
 
 
