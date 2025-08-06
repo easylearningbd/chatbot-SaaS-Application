@@ -118,15 +118,52 @@ document.addEventListener('DOMContentLoaded', function(){
             <td>
                 <button class="btn btn-sm btn-danger delete-document-btn" data-id="${doc.id}" ${doc.status === 'processing' ? 'disabled' : ''} >Delete</button>
             </td> 
-                `   
+                `;   
             });
             
         } catch (error) {
-            
+            console.error('Error featching documents', error);
+            documentsTableBody.innerHTML = `<tr><td colspan="4" class="text-center text-danger">Failed to load documents</td> </tr>`
+        } finally {
+            documentsLoadingSpinner.classList.remove('active')
         }
         
     }
     /// End fetchDocuments Method 
+
+    uploadDocumentForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        uploadMessage.innerHTML = '';
+
+        const formData = new FormData(this);
+        const csrfToken = getCsrfToken();
+
+        if (!csrfToken) {
+            uploadMessage.innerHTML = `<div class="alert alert-danger">CSRF token not found. Please refresh the page</div>`;
+            return;
+        }
+
+        try {
+        const = response = await fetch('/knowledge-documents',{
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN' : csrfToken,
+                'Accept' : 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+
+        const data = await response.json();
+
+
+        } catch (error) {
+            
+        }
+ 
+
+    });
+    /// End submit Method 
 
 
 
