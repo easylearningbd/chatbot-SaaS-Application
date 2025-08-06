@@ -7,6 +7,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsUser;
 
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\KnowledgeDocumentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,6 +62,11 @@ Route::controller(PlanController::class)->group(function(){
 
 
  
+
+Route::middleware('auth')->group(function () {
+    Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePage'])->name('knowledge.page');
+    
+});
 
 
 
