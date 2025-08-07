@@ -64,7 +64,14 @@ Route::controller(PlanController::class)->group(function(){
  
 
 Route::middleware('auth')->group(function () {
-    Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePage'])->name('knowledge.page');
+
+Route::get('/knowledge-documents', [KnowledgeDocumentController::class, 'Index'])->name('knowledge-documents.index');
+
+
+
+
+
+Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePage'])->name('knowledge.page');
     
 });
 

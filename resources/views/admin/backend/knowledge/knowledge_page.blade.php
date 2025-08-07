@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if (!csrfToken) {
             uploadMessage.innerHTML = `<div class="alert alert-danger">CSRF token not found. Please refresh the page</div>`;
             return;
-        }
+        } 
 
         try {
         const = response = await fetch('/knowledge-documents',{
