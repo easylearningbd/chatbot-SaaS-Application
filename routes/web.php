@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/knowledge-documents', [KnowledgeDocumentController::class, 'Index'])->name('knowledge-documents.index');
 Route::post('/knowledge-documents', [KnowledgeDocumentController::class, 'Store'])->name('knowledge-documents.store');
 
+Route::delete('/knowledge-documents/{document}', [KnowledgeDocumentController::class, 'DocDelete']);
+
 
 
 
