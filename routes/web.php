@@ -66,6 +66,7 @@ Route::controller(PlanController::class)->group(function(){
 Route::middleware('auth')->group(function () {
 
 Route::get('/knowledge-documents', [KnowledgeDocumentController::class, 'Index'])->name('knowledge-documents.index');
+Route::post('/knowledge-documents', [KnowledgeDocumentController::class, 'Store'])->name('knowledge-documents.store');
 
 
 

@@ -30,6 +30,41 @@ class KnowledgeDocumentController extends Controller
     }
     /// End Method 
 
+    public function Store(Request $request){
+
+        $request->validate([
+            'document_file' => 'required|file|mimes:txt,md|max:2048'
+        ]);
+
+        $user = Auth::user();
+        $company = $user->company;
+
+        if (!$company) {
+            return response()->json(['message' => 'User is not associated with a company'], 403);
+        }
+
+        $companyId = $user->company_id;
+        $companySlug = $company->slug;
+
+        $path = 'knowledge_bases/'.$companySlug;
+        $fileName = time().'_'.Str::slug(pathinfo($request->file('document_file')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('document_file')->getClientOriginalExtension();
+        $filePath = $request->file('document_file')->storeAs($path,$fileName,'public');
+
+        $document = KnowledgeDocument::create([
+            'company_id' => $companyId,
+            'file_name' => $request->file('document_file')->getClientOriginalName(),
+            'file_path' => $filePath,
+            'status' => 'pending'
+        ]);
+
+        return response()->json([
+            'message' => 'Document uploaded successfully and pending processing',
+            'document' => $document
+        ],201);
+    
+    }
+    /// End Method 
+
 
 
 
