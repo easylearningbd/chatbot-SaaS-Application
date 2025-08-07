@@ -120,6 +120,15 @@ document.addEventListener('DOMContentLoaded', function(){
             </td> 
                 `;   
             });
+   
+        /// For delete data 
+        document.querySelectorAll('.delete-document-btn').forEach(button => {
+            button.addEventListener('click', function(){
+                const documentId = this.getAttribute('data-id');
+                deleteDocument(documentId);
+            });
+        }); 
+         /// end For delete data 
             
         } catch (error) {
             console.error('Error featching documents', error);
@@ -178,7 +187,43 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     /// End submit Method 
 
+ async function deleteDocument(documentId){
+    
+    if(!confirm('Are you sure you want to delete this document?')) return;
 
+     const csrfToken = getCsrfToken();
+
+        if (!csrfToken) {
+            uploadMessage.innerHTML = `<div class="alert alert-danger">CSRF token not found. Please refresh the page</div>`;
+            return;
+        } 
+
+
+    try {
+        const response = await fetch(`/knowledge-documents/${documentId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN' : csrfToken,
+                'Accept' : 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            deleteMessage.innerHTML = `<div class="alert alert-success">${data.message}</div>`; 
+            fetchDocuments(); 
+        } else {
+            console.error('Delete Failed', response.status, data);
+            deleteMessage.innerHTML = `<div class="alert alert-danger">${data.message}</div>`
+        }  
+    } catch (error) {
+         console.error('Error deleting documents', error);
+         deleteMessage.innerHTML = `<div class="alert alert-danger">Failed to delete document. ${error.message} Plz try again </div>`;
+     } 
+    }
+     /// End Delete Method  
 
     // Initial load 
     fetchDocuments();
