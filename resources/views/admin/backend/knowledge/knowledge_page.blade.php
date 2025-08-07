@@ -180,17 +180,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-
+    // Initial load 
+    fetchDocuments();
 
 }); 
 
-
-</script>
-
-
-
-
-
+</script> 
 
 
 @endsection
