@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             <td><span class="badge ${doc.status === 'processed' ? 'bg-success' : doc.status === 'pending' ? 'bg-warning text-dark' : 'bg-danger'}    ">${doc.status}</span></td>
 
-            <td> ${new Date(doc.created_at).toLocalDateString()} </td>
+            <td> ${new Date(doc.created_at).toLocaleDateString()} </td>
             <td>
                 <button class="btn btn-sm btn-danger delete-document-btn" data-id="${doc.id}" ${doc.status === 'processing' ? 'disabled' : ''} >Delete</button>
             </td> 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function(){
         } 
 
         try {
-        const = response = await fetch('/knowledge-documents',{
+        const response = await fetch('/knowledge-documents',{
             method: 'POST',
             body: formData,
             headers: {

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\KnowledgeChunk;
 use App\Models\Chatbot;
 use App\Models\KnowledgeDocument;
+use Illuminate\Support\Str; 
  
 class KnowledgeDocumentController extends Controller
 {
