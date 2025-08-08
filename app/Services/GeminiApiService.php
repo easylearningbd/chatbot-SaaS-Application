@@ -80,6 +80,45 @@ class GeminiApiService
 
   //  Generate text from a prompt 
 
+   public function generateText(string $prompt): ?string {
+
+       if (empty($this->apiKey)) {
+            Log::error('Gemini Text Generation API Key is missing');
+          return 'API Key is not configured';
+        }
+
+    $endpoint = "models/{$this->generationModel}:generateContent";
+     
+    try {
+        $response = $this->httpClient->post($endpoint, [
+            'query' => ['key' => $this->apiKey],
+            'json' => [ 
+                'contents' => [
+                    'parts' => [[ 'text' => $prompt ]],
+                ],
+            ],
+        ]);
+
+    $data = json_decode($response->getBody()->getContents(), true);
+
+    if ($response->getStatusCode() === 200 && isset($data['candidates'][0]['content']['parts'][0]['text'])) {
+       $text = $data['candidates'][0]['content']['parts'][0]['text']; 
+       return $text;
+    }
+    return 'I could not Generate a response';
+        
+    } catch (\RequestException $e) {
+       Log::error('Gemini Text Generation api request fails:' .$e->getMessage(), [
+        'status_code' => $e->hasResponse() ? $e->getResponse()->getStatusCode() : 'N/A',
+       ]);
+       return 'An error occurred while generateing text';
+    } catch (\Throwable $e) {
+        Log::error('Gemini Embedding api General Error:' . $e->getMessage());
+        return 'Unexpected error';
+    } 
+
+ }
+
 
 
 
