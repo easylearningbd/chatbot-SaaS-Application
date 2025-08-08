@@ -120,6 +120,34 @@ class GeminiApiService
  }
 
 
+ public function calculateCosineSimilarity(array $vectorA, array $vectorB): float {
+    if (count($vectorA) !== count($vectorB)) {
+       Log::error('Cosine similartiy: vectors much have the same diemension.');
+       return 0.0;
+    }
+
+        $dotProduct = 0.0;
+        $magnitudeA = 0.0;
+        $magnitudeB = 0.0;
+
+        for ($i = 0; $i < count($vectorA); $i++) {
+            $dotProduct += $vectorA[$i] * $vectorB[$i];
+            $magnitudeA += $vectorA[$i] * $vectorA[$i];
+            $magnitudeB += $vectorB[$i] * $vectorB[$i];
+        }
+
+        $magnitudeA = sqrt($magnitudeA);
+        $magnitudeB = sqrt($magnitudeB);
+
+        if ($magnitudeA == 0 || $magnitudeB == 0) {
+            return 0.0; // Avoid division by zero
+        }
+
+        return $dotProduct / ($magnitudeA * $magnitudeB); 
+
+ }
+
+
 
 
 
