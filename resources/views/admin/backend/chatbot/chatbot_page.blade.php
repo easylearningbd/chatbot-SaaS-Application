@@ -5,7 +5,7 @@
    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
 </head>
 <style>
     .loading-spinner {
@@ -52,24 +52,33 @@
 <div class="card">
 <div class="card-header"> Existing Chatbots  </div>
 <div class="card-body">
-    <div class="loading-spinner" id="documentsLoadingSpinner">
+    <div class="loading-spinner" id="chatbotsLoadingSpinner">
         <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading....</span>
         </div>
-    <p class="mt-2 text-muted">Loading Documents</p>
-    </div>
-<div id="deleteMessage" class="mt-3"></div>
+    <p class="mt-2 text-muted">Loading Chatbots...</p>
+    </div> 
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>Document Name</th>
+            <th>Chatbot Name</th>
             <th>Status</th>
-            <th>Uploaded At</th>
+            <th>Knowledge Base</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody id="documentsTableBody"> 
-        {{-- load all data  --}}
+       <tr>
+        <td>name</td>
+        <td> <span class="badge bg-success">active</span> </td>
+        <td>knowledge information</td>
+        <td>
+            <button class="btn btn-sm btn-info text-white me-2">Embed Code</button>
+
+             <button class="btn btn-sm btn-danger delete-chatbot-btn ">Delete</button>
+        </td>
+
+       </tr>
     </tbody>
 
 </table> 
