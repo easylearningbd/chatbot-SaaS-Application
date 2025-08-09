@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\User;
 use App\Models\KnowledgeChunk;
-use App\Models\Chatbot;
+use App\Models\Chatbot; 
 use App\Models\KnowledgeDocument;
 use Illuminate\Support\Str; 
 use Illuminate\Support\Facades\Storage; 
