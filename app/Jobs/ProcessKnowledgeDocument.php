@@ -45,18 +45,43 @@ class ProcessKnowledgeDocument implements ShouldQueue
         $chunks = $this->splitIntoChunks($content,$chunkSize,$overlap);
 
     //// get embedding for each chunk and store to KnowledgeChunk
-        
 
+    foreach ($chunks as $chunkContent) {
+       $embedding = $geminiService->getEmbedding($chunkContent);
 
+       if ($embedding) {
+          KnowledgeChunk::create([
+            'knowledge_document_id' => $this->document->id,
+            'company_id' => $this->document->company_id,
+            'content' => $chunkContent,
+            'embedding' => json_encode($embedding), // Convert array to JSON String  
 
-       } catch (\Throwable $th) {
-        //throw $th;
+          ]);
+       } else {
+        Log::warning("Failed to get embedding for chunk from document");
        }
+    }
 
+         /// Update document status to processed
 
+        $this->document->update(['status' => 'processed']); 
+
+       } catch (\Exception $e) {
+        $this->document->update(['status' => 'failed']);
+       } 
 
     }
 
+
+    protected function splitIntoChunks(string $text, int $chunkSize, int $overlap) : array {
+        $chunks = [];
+        $length = mb_strlen($text);
+        for ($i=0; $i < $length; $i += ($chunkSize - $overlap)) { 
+            $chunk = mb_substr($text, $i, $chunkSize);
+            $chunks[] = $chunk;
+        }
+        return $chunks;
+    } 
 
 
 }
