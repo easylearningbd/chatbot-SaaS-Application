@@ -28,7 +28,7 @@ class GeminiApiService
         }
 
         $this->httpClient = new Client([
-            'base_url' => 'https://generativelanguage.googleapis.com/v1beta/',
+            'base_uri' => 'https://generativelanguage.googleapis.com/v1beta/',
             'headers' => ['Content-Type' => 'application/json'],
             'timeout' => 30,
             'connect_timeout' => 10,
@@ -44,7 +44,7 @@ class GeminiApiService
         }
 
     $endpoint = "models/{$this->embeddingModel}:embedContent";
-    $finalUrl = $this->httpClient->getConfig('base_url'). $endpoint . "?key={$this->apiKey}";
+    $finalUrl = $this->httpClient->getConfig('base_uri'). $endpoint . "?key={$this->apiKey}";
 
     Log::debug('About to call gemini', ['url' => $finalUrl]);
 
@@ -143,7 +143,8 @@ class GeminiApiService
             return 0.0; // Avoid division by zero
         }
 
-        return $dotProduct / ($magnitudeA * $magnitudeB); 
+        return $dotProduct / ($magnitudeA * $magnitudeB);
+
 
  }
 

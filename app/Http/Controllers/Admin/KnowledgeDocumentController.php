@@ -11,6 +11,7 @@ use App\Models\Chatbot;
 use App\Models\KnowledgeDocument;
 use Illuminate\Support\Str; 
 use Illuminate\Support\Facades\Storage; 
+use App\Jobs\ProcessKnowledgeDocument;
  
 class KnowledgeDocumentController extends Controller
 {
@@ -58,6 +59,9 @@ class KnowledgeDocumentController extends Controller
             'file_path' => $filePath,
             'status' => 'pending'
         ]);
+
+        // Dispatch the job process 
+        ProcessKnowledgeDocument::dispatch($document);
 
         return response()->json([
             'message' => 'Document uploaded successfully and pending processing',
