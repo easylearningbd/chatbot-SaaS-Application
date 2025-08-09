@@ -8,6 +8,7 @@ use App\Http\Middleware\IsUser;
 
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\KnowledgeDocumentController;
+use App\Http\Controllers\Admin\ChatbotController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -68,13 +69,16 @@ Route::middleware('auth')->group(function () {
 Route::get('/knowledge-documents', [KnowledgeDocumentController::class, 'Index'])->name('knowledge-documents.index');
 Route::post('/knowledge-documents', [KnowledgeDocumentController::class, 'Store'])->name('knowledge-documents.store');
 
-Route::delete('/knowledge-documents/{document}', [KnowledgeDocumentController::class, 'DocDelete']);
-
-
-
-
+Route::delete('/knowledge-documents/{document}', [KnowledgeDocumentController::class, 'DocDelete']); 
 
 Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePage'])->name('knowledge.page');
+    
+});
+
+
+Route::middleware('auth')->group(function () {
+
+Route::get('/chatbot/page', [ChatbotController::class, 'ChatbotPage'])->name('chatbot.page'); 
     
 });
 
