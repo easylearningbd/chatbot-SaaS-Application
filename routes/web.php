@@ -78,6 +78,8 @@ Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePag
 
 Route::middleware('auth')->group(function () {
 
+Route::get('/chatbots', [ChatbotController::class, 'Index']); 
+
 Route::get('/chatbot/page', [ChatbotController::class, 'ChatbotPage'])->name('chatbot.page'); 
     
 });
