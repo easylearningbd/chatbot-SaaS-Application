@@ -144,12 +144,47 @@ document.addEventListener('DOMContentLoaded', function(){
         return token;
     }
 
+   async function populateKnowledgeDocuments(){
+    const select = document.getElementById('knowledgeDocumentIds');
+    if (!select) {
+        console.error('Knowlede docuemnt select element not found');
+        return;
+    }
+
+    try {
+        const response = await fetch('/knowledge-documents',{
+                headers: {
+                    'Accept' : 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('HTTP ERRORS');
+            }
+
+            const documents = await response.json();
+            // console.log('Knowledge document:' , documents);
+        select.innerHTML = documents.length
+        ? documents.map(doc => `<option value="${doc.id}">${doc.file_name} </option>`).join('')
+        : `<option value="">No document available</option>`; 
+        
+    } catch (error) {
+        console.error('Error fetching knowledge document', error);
+    } 
     
+   }
+   /// End Method populateKnowledgeDocuments
+   
 
 
 
 
-})
+// Initial Load
+ populateKnowledgeDocuments();
+
+
+});
 
 
 </script>
