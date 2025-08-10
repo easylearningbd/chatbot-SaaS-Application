@@ -67,7 +67,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody id="documentsTableBody"> 
+    <tbody id="chatbotsTableBody"> 
        <tr>
         <td>name</td>
         <td> <span class="badge bg-success">active</span> </td>
@@ -113,6 +113,46 @@
         </div>
     </div>
 <!--End Embed Code Modal -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+    try {
+        $('#knowledgeDocumentIds').select2({
+            placeholder: 'Select Knowledge documents',
+            allowClear: true
+        });
+    } catch (error) {
+        console.error('Error initializing Select2', error)
+    }
+
+
+  const sections = document.querySelectorAll('.section-content');
+  const createChatbotForm = document.getElementById('createChatbotForm');
+  const chatbotsTableBody = document.getElementById('chatbotsTableBody');
+
+  const chatbotsLoadingSpinner = document.getElementById('chatbotsLoadingSpinner');
+  const createChatbotMessage = document.getElementById('createChatbotMessage');
+  
+ function getCsrfToken(){
+        const token = document.querySelector('meta[name="csrf-token"]')?.content;
+        if (!token) {
+            console.error('CSRF Totken not found');
+            return null;
+        }
+        return token;
+    }
+
+    
+
+
+
+
+})
+
+
+</script>
 
 
 
