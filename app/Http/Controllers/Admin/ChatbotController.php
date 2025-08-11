@@ -38,6 +38,40 @@ class ChatbotController extends Controller
     }
      // End Method 
 
+    public function Store(Request $request){
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'persona' => 'nullable|string',
+            'knowledge_document_ids' => 'nullable|array',
+        ]);
+
+        $user = Auth::user();
+        $companyId = $user->company_id;
+
+        if (!$companyId) {
+            return response()->json(['message' => 'User is not associated with a company'], 403);
+        }
+
+        $chatbot = Chatbot::create([
+            'company_id' => $companyId,
+            'name' => $request->name,
+            'persona' => $request->persona,
+            'status' => 'active',
+        ]);
+
+        if ($request->has('knowledge_document_ids')) {
+           $chatbot->knowledgeDocuments()->sync($request->knowledge_document_ids);
+        }
+
+        return response()->json([
+            'message' => 'Chatbot created successfully',
+            'chatbot' => $chatbot->load('knowledgeDocuments')
+        ],201);
+
+    }
+    // End Method 
+
 
 
 
