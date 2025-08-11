@@ -74,6 +74,19 @@ class ChatbotController extends Controller
 
     public function DeleteChatbot(Chatbot $chatbot){
 
+        $user = Auth::user();
+
+        if (!$user->company_id ||  $chatbot->company_id !== $user->company_id) {
+            return response()->json(['message' => 'Unauthorized or no company associated with this user'], 403);
+        }
+
+        try {
+            $chatbot->knowledgeDocuments()->detach();
+            $chatbot->delete();
+            return response()->json(['message' => 'Chatbot deleted successfully'], 200);
+        } catch (\Exception $e) {
+           return response()->json(['message' => 'Failed to delete chatbot'],500);
+        } 
     }
        // End Method 
 
