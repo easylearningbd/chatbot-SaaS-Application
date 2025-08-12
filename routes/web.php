@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\KnowledgeDocumentController;
 use App\Http\Controllers\Admin\ChatbotController;
 
+use App\Http\Controllers\User\UserController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +24,8 @@ Route::middleware(['auth', IsUser::class])->group(function () {
  Route::get('/dashboard', function () {
     return view('client.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
 
 }); 
