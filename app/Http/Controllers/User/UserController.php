@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Plan;
  
 
 class UserController extends Controller
@@ -106,6 +107,12 @@ class UserController extends Controller
         return redirect()->route('login')->with($notification); 
     }
       //End Method 
+
+    public function BillingUpgrade(){
+        $plans = Plan::all();
+        return view('client.backend.plans.upgrade',compact('plans'));
+    }
+     //End Method 
 
 
 

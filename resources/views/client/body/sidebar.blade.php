@@ -140,12 +140,12 @@
   
 </ul>
 
-                    <!-- Help Box -->
-                    <div class="help-box text-center">
-                        <h5 class="fw-semibold fs-16">Unlimited Access</h5>
-                        <p class="mb-3 text-muted">Upgrade to plan to get access to unlimited reports</p>
-                        <a href="javascript: void(0);" class="btn btn-danger btn-sm">Upgrade</a>
-                    </div>
+<!-- Help Box -->
+<div class="help-box text-center">
+    <h5 class="fw-semibold fs-16">Unlimited Access</h5>
+    <p class="mb-3 text-muted">Upgrade to plan to get access to unlimited reports</p>
+    <a href="{{ route('billing.upgrade') }}" class="btn btn-danger btn-sm">Upgrade</a>
+</div>
 
                     <div class="clearfix"></div>
                 </div>

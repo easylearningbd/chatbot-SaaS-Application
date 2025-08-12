@@ -33,6 +33,13 @@ Route::get('/user/change/password', [UserController::class, 'UserChangePassword'
 Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
 
+Route::controller(UserController::class)->group(function(){
+    Route::get('/billing/upgrade','BillingUpgrade')->name('billing.upgrade');  
+
+});
+
+
+
 }); 
 //// End Only Acceessable for User 
 
