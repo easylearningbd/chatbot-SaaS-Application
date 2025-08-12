@@ -175,11 +175,39 @@ if ($user &&  $user->plan && $user->company ) {
 </ul>
 
 <!-- Help Box -->
+@if ($user && $currentPlan) 
 <div class="help-box text-center">
-    <h5 class="fw-semibold fs-16">Unlimited Access</h5>
-    <p class="mb-3 text-muted">Upgrade to plan to get access to unlimited reports</p>
-    <a href="{{ route('billing.upgrade') }}" class="btn btn-danger btn-sm">Upgrade</a>
+    <h5 class="fw-semibold fs-16">Your Current Paln: <span class="text-white">{{ $currentPlan->name }}</span> </h5>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-left mb-4">
+        <div>
+            <h6 class="font-semibold text-gray-400">Knowledge Bases: </h6>
+    <p class="text-sm text-gray-700">Used: <span class="font-medium">
+        {{ $usedKnowledgeBases }}</span> / Limit: <span class="font-medium">
+        {{ $currentPlan->knowledge_base }}</span> Remaining:<span class="font-medium">
+        {{ max(0,$remainingKnowledgeBases) }}</span> </p>  
+        </div>
+
+
+        <div>
+            <h6 class="font-semibold text-gray-400">Chatbots: </h6>
+    <p class="text-sm text-gray-700">Used: <span class="font-medium">
+        {{ $usedChatbots }}</span> / Limit: <span class="font-medium">
+        {{ $currentPlan->chat_bot }}</span> Remaining:<span class="font-medium">
+        {{ max(0,$remainingChatbots) }}</span> </p>  
+        </div> 
+    </div>
+
+   @if ($remainingKnowledgeBases <= 0 || $remainingChatbots <= 0)
+    <p class="mb-3 text-red-600 font-semibold"> You have reached your limits for this paln!</p>
+    <a href="{{ route('billing.upgrade') }}" class="btn btn-danger btn-sm">Upgrade Plan</a>
+    @else  
+    <p class="mb-3 text-red-600 font-semibold"> You have capabilites reming on your Plan</p>
+    <a href="{{ route('billing.upgrade') }}" class="btn btn-danger btn-sm">Upgrade Plan</a>
+   @endif 
+     
 </div>
+@endif
 
                     <div class="clearfix"></div>
                 </div>
