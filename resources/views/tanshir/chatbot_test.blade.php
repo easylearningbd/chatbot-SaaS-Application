@@ -218,6 +218,45 @@
         }
     }
 
+    async function sendMessage(){
+        const userText = chatInput.value.trim();
+        if (userText === '' || isLoading) {
+            return;
+        }
+     
+        appendMessage('user', userText);
+        chatInput.value = '';
+        isLoading = true;
+        sendButton.disabled = true;
+        showLoadingIndicator(); 
+
+    try {
+        const response = await fetch(`${CHATBOT_API_BASE_URL}/chatbots/${CHATBOT_ID}/chat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({ query: userText })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            appendMessage('ai', data.answer);
+        }else {
+            const errorMessage = data.error || data.message || 'Sorry, I encounterd an error';
+            appendMessage('ai', `Error: ${errorMessage}`);
+        }        
+    } catch (error) {
+        console.error('Network unexpected error', error);
+        appendMessage('ai', 'Opps something went wrong');
+    }finally {
+        isLoading = false;
+        sendButton.disabled = false;
+        hideLoadingIndicator() 
+      } 
+    }
    
 
 </script>
