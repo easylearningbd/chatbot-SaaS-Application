@@ -107,6 +107,7 @@ Route::get('/user/chatbot/page', [ChatbotController::class, 'UserChatbotPage'])-
 });
 
 
+Route::get('/tanshir', [UserController::class, 'Tanshir'])->name('tanshir.page'); 
 
 
 

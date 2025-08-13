@@ -114,6 +114,11 @@ class UserController extends Controller
     }
      //End Method 
 
+    public function Tanshir(){
+        return view('tanshir.chatbot_test');
+    }
+    //End Method 
+
 
 
 
