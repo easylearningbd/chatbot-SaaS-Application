@@ -51,6 +51,20 @@ class KnowledgeDocumentController extends Controller
             return response()->json(['message' => 'User is not associated with a company'], 403);
         }
 
+        /// Get the current number of knowledge document for this user 
+        $currentDocumentsCount = KnowledgeDocument::where('company_id',$user->company_id)->count();
+        
+        // get the limit for the user plan
+        $knowledgeBaseLimit = $user->plan->knowledge_base;
+
+        // Check if the limit has been reached 
+        if ($currentDocumentsCount >= $knowledgeBaseLimit) {
+           return response()->json([
+            'message' => 'You have reached your limit of knowledge base documents for your  current plan. Plz upgrate your Plan for add more.'
+           ],403);
+        }
+
+
         $companyId = $user->company_id;
         $companySlug = $company->slug;
 
