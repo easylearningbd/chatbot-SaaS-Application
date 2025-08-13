@@ -101,6 +101,8 @@ Route::post('/chatbots', [ChatbotController::class, 'Store']);
 Route::delete('/chatbots/{chatbot}', [ChatbotController::class, 'DeleteChatbot']); 
 
 Route::get('/chatbot/page', [ChatbotController::class, 'ChatbotPage'])->name('chatbot.page'); 
+
+Route::get('/user/chatbot/page', [ChatbotController::class, 'UserChatbotPage'])->name('user.chatbot.page'); 
     
 });
 

@@ -88,7 +88,7 @@ if ($user &&  $user->plan && $user->company ) {
     </li>
 
     <li class="side-nav-item">
-        <a href="{{ route('chatbot.page') }}" class="side-nav-link">
+        <a href="{{ route('user.chatbot.page') }}" class="side-nav-link">
             <span class="menu-icon"><i class="ti ti-mailbox"></i></span>
             <span class="menu-text"> Chatbot </span>
         </a>
