@@ -88,6 +88,8 @@ Route::post('/knowledge-documents', [KnowledgeDocumentController::class, 'Store'
 Route::delete('/knowledge-documents/{document}', [KnowledgeDocumentController::class, 'DocDelete']); 
 
 Route::get('/knowledge/page', [KnowledgeDocumentController::class, 'KnowledgePage'])->name('knowledge.page');
+
+Route::get('/user/knowledge/page', [KnowledgeDocumentController::class, 'UserKnowledgePage'])->name('user.knowledge.page');
     
 });
 

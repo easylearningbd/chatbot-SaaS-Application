@@ -20,6 +20,11 @@ class KnowledgeDocumentController extends Controller
     }
     /// End Method 
 
+     public function UserKnowledgePage(){
+        return view('client.backend.knowledge.knowledge_page');
+    }
+    /// End Method 
+
     public function Index(){
         $companyId = Auth::user()->company_id;
 
