@@ -257,7 +257,27 @@
         hideLoadingIndicator() 
       } 
     }
-   
+
+
+    /// Event Listeners 
+
+    sendButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    chatbotHeader.addEventListener('click', toggleChatbot);
+    toggleChatbotBtn.addEventListener('click', (event) => {
+        event.stopPropagation()
+        toggleChatbot();
+    });
+
+    setTimeout(() => {
+        chatbotContainer.style.opacity = '1';
+        chatbotContainer.style.visibility = 'visible';
+    },500); 
 
 </script>
 
