@@ -177,7 +177,52 @@
     let isChatbotOpen = false;
     let isLoading = false;
 
+    /// Helper functions 
+
+    function appendMessage(sender, text){
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message',sender);
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showLoadingIndicator(){
+        if (!document.getElementById('loading-indicator-dynamic')) {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-indicator-dynamic';
+            loadingDiv.classList.add('loading-indicator');
+            loadingDiv.textContent = 'AI is typing...';
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; 
+
+        }
+    }
+
+    function hideLoadingIndicator(){
+        const loadingDiv = document.getElementById('loading-indicator-dynamic')
+        if (loadingDiv) {
+            loadingDiv.remove();
+        }
+    }
+
+    function toggleChatbot(){
+        isChatbotOpen = !isChatbotOpen;
+        if (isChatbotOpen) {
+            chatbotContainer.classList.add('open');
+            toggleChatbotBtn.textContent = 'x';
+            chatInput.focus();
+        }else{
+            chatbotContainer.classList.remove('open');
+             toggleChatbotBtn.textContent = '💬';
+        }
+    }
+
+   
+
 </script>
+
+ 
 
     
     
