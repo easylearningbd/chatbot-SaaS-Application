@@ -8,6 +8,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/chatbots/{chatbotId}/chat', [ChatbotInteractionController::class, 'Chat']);
+Route::post('/chatbots/{chatbotId}/chat', [ChatbotInteractionController::class, 'Chat']);
 
 
