@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\KnowledgeDocumentController;
 use App\Http\Controllers\Admin\ChatbotController;
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\CompanySettingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,11 @@ Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/billing/upgrade','BillingUpgrade')->name('billing.upgrade');  
+
+});
+
+Route::controller(CompanySettingController::class)->group(function(){
+    Route::get('/company/setting','CompanySetting')->name('company.setting'); 
 
 });
 
