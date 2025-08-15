@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Plan;
+use App\Models\Company;
  
 
 class UserController extends Controller
@@ -118,6 +119,17 @@ class UserController extends Controller
         return view('tanshir.chatbot_test');
     }
     //End Method 
+
+    public function CompanyShow(string $slug){
+        $company = Company::where('slug',$slug)->first();
+
+        if (!$company) {
+           abort(404, 'Company not found or inactive');
+        }
+
+        return view('company.company_page',compact('company'));
+    }
+      //End Method 
 
 
 

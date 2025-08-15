@@ -16,6 +16,8 @@ use App\Http\Controllers\User\CompanySettingController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/company/{slug}', [UserController::class, 'CompanyShow'])->name('company.page.show');
  
 
 //// Only Acceessable for User 
@@ -40,7 +42,7 @@ Route::controller(UserController::class)->group(function(){
 });
 
 Route::controller(CompanySettingController::class)->group(function(){
-    Route::get('/company/setting','CompanySetting')->name('company.setting');
+    Route::get('/company/setting/page','CompanySetting')->name('company.setting.page');
     Route::post('/company/setting/update','CompanySettingUpdate')->name('company.setting.update'); 
 
 });

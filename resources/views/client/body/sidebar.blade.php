@@ -95,9 +95,16 @@ if ($user &&  $user->plan && $user->company ) {
     </li>
 
       <li class="side-nav-item">
-        <a href="{{ route('company.setting') }}" class="side-nav-link">
+        <a href="{{ route('company.setting.page') }}" class="side-nav-link">
             <span class="menu-icon"><i class="ti ti-mailbox"></i></span>
             <span class="menu-text"> Website Setting  </span>
+        </a>
+    </li>
+
+    <li class="side-nav-item">
+        <a href="{{ route('company.page.show',$companySlug) }}" class="side-nav-link" target="_blank">
+            <span class="menu-icon"><i class="ti ti-mailbox"></i></span>
+            <span class="menu-text"> Company Website   </span>
         </a>
     </li>
 
