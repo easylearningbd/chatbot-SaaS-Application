@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Str; 
 use App\Models\User;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -51,6 +52,35 @@ class CompanySettingController extends Controller
         $company->company_logo = $save_url;  
     }
 
+    $selectedChatbotId = $request->input('chatbot_embed_code');
+    $chatbotEmbedCode = null;
+    
+    if ($selectedChatbotId) {
+
+        $selectedChatbot = $company->chatbots()->find($selectedChatbotId);
+        if ($selectedChatbot) {
+        $chatbotEmbedCode = '<div id="my-chatbot-widget" data-chatbot-id=" ' . $selectedChatbot->id . ' "></div>';
+        $chatbotEmbedCode .= '<script src=" ' . asset('js/chatbot-widget.js') . '"></script>';
+        }
+    }
+
+    $company->name = $request->name;
+    $company->slug = Str::slug($request->name);
+    $company->header_content = $request->header_content;
+    $company->about_us_content = $request->about_us_content;
+    $company->services_content = $request->services_content;
+    $company->contact_info = $request->contact_info;
+    $company->social_email = $request->social_email;
+    $company->social_phone = $request->social_phone;
+    $company->chatbot_embed_code = $chatbotEmbedCode; 
+    
+    $company->save();
+
+     $notification = array(
+            'message' => 'Website Setting Updated Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->back()->with($notification);  
 
     }
     //End Method

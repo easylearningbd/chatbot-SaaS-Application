@@ -15,6 +15,7 @@
         @endif
 
     <form action="{{ route('company.setting.update') }}" method="POST" enctype="multipart/form-data">
+     @csrf
 
     <div class="mb-3">
         <label for="name" class="form-label">Company Name </label>
