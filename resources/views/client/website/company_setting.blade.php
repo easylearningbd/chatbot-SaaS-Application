@@ -65,9 +65,49 @@
         @enderror 
     </div>
 
+    <hr class="my-4">
+    <h4>Contact Information </h4>
 
+    <div class="mb-3">
+        <label for="contact_info" class="form-label">Company Address </label>
+        <input type="text" name="contact_info" id="contact_info" class="form-control" value="{{ $company->contact_info }}">
+        @error('contact_info')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror 
+    </div>
 
-    </form>
+     <div class="mb-3">
+        <label for="social_email" class="form-label">Company Email </label>
+        <input type="text" name="social_email" id="social_email" class="form-control" value="{{ $company->social_email }}">
+        @error('social_email')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror 
+    </div>
+
+    <div class="mb-3">
+        <label for="social_phone" class="form-label">Company Phone </label>
+        <input type="text" name="social_phone" id="social_phone" class="form-control" value="{{ $company->social_phone }}">
+        @error('social_phone')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror 
+    </div>
+
+  <hr class="my-4">
+  <h4>Chatbot Embed Code </h4>
+
+  <div class="mb-3">
+  <label for="chatbot_embed_code" class="form-label">Select Chatbot For Public Page</label>
+  <select class="form-control" name="chatbot_embed_code" id="chatbot_embed_code">
+    <option value="">-- No Chatbot --</option>
+    <option value="">chatbot</option>
+  </select>
+  <small>Choose which chatbot will apper on your public company website</small>
+</div>
+
+<button type="submit" class="btn btn-primary">Save Settings</button>
+ 
+
+ </form>
 
 
 
