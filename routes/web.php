@@ -40,7 +40,8 @@ Route::controller(UserController::class)->group(function(){
 });
 
 Route::controller(CompanySettingController::class)->group(function(){
-    Route::get('/company/setting','CompanySetting')->name('company.setting'); 
+    Route::get('/company/setting','CompanySetting')->name('company.setting');
+    Route::post('/company/setting/{update}','CompanySettingUpdate')->name('company.setting.update'); 
 
 });
 

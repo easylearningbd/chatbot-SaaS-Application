@@ -14,7 +14,7 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-    <form action="">
+    <form action="{{ route('company.setting.update') }}" method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
         <label for="name" class="form-label">Company Name </label>
