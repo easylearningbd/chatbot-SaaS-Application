@@ -13,6 +13,8 @@
     <!-- bootstrap  -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.min.css') }}">
+
+     <link href="{{ asset('css/chatbot-widget.css') }}">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
 
@@ -722,6 +724,16 @@
             </div>
         </div>
     </footer>
+
+    @if ($company->chatbot_embed_code)
+        <div class="chatbot-embed-container">
+            {!! $company->chatbot_embed_code !!}
+        </div>
+    @endif
+
+
+
+
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <script src="{{ asset('frontend/js/app.js') }}"></script>
