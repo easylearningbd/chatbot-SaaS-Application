@@ -74,18 +74,10 @@
             <div
                 class="row align-items-center justify-content-center text-center">
                 <div class="col-lg-10">
-                    <h1 class="display-3 fw-semibold lh-base text-primary">Make
-                        Your
-                        Business Flourish with <span
+                    <h1 class="display-3 fw-semibold lh-base text-primary">Welcome to your our <span
                             class="text-orange text-line">
-                            Digital Marketing</span></h1>
-                    <p class="mt-4">Save time on creating a website from
-                        scratch. Use a rich collection of ready-made
-                        websites to
-                        get your project off to a <br> fast start opposed to
-                        using 'Content here, content here', making it look
-                        like
-                        readable English.
+                           {{ $company->name }}</span></h1>
+                    <p class="mt-4"> {{ $company->header_content }}
                     </p>
                     <div class="main-btn my-5">
                         <a href="javascript:void(0);" class="btn btn-primary my-2">Try
@@ -94,7 +86,7 @@
                             class="btn btn-outline-primary ms-2">Schedule
                             a Call</a>
                     </div>
-                    <img src="{{ asset('frontend/images/Dashboard.png') }}" alt class="img-fluid mt-5 rounded-4">
+                    <img src="{{ asset( $company->company_logo ) }}" alt class="img-fluid mt-5 rounded-4">
                 </div>
             </div>
         </div>
@@ -173,8 +165,7 @@
                         </span>
                     </div>
                     <div class="about-title main-title mt-3">
-                        <h2 class="text-primary">Discover Powerful Features
-                            To Boost <span class="text-orange text-line p-0">
+                        <h2 class="text-primary">{{$company->about_us_content}} <span class="text-orange text-line p-0">
                                 Productivity</span>
                         </h2>
                     </div>
@@ -355,11 +346,7 @@
                         <h2 class="text-primary">Grow Up Your Business With In
                             <span class="text-orange text-line">5 Minutes</span>
                         </h2>
-                        <p class="my-3">The passage experienced a surge in
-                            popularity during the 1960s when Letraset used
-                            it on their dry-transfer sheets, and again
-                            during the 90s as desktop publishers bundled the
-                            text with their software.</p>
+                        <p class="my-3">{{$company->services_content}}</p>
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-6">
@@ -601,7 +588,7 @@
                         </lord-icon>
                         <div class="d-block align-self-center ms-4">
                             <h4 class="fw-semibold text-primary">Office address</h4>
-                            <span>2 Holt Street, Surry Hills, Australia.</span>
+                            <span>{{ $company->contact_info }}</span>
                         </div>
                     </div>
                 </div>
@@ -615,7 +602,7 @@
                         </lord-icon>
                         <div class="d-block align-self-center ms-4">
                             <h4 class="fw-semibold text-primary">Telephone number</h4>
-                            <span>1-888-452-1505</span>
+                            <span>{{ $company->social_phone }}</span>
                         </div>
                     </div>
                 </div>
@@ -630,7 +617,7 @@
                         <div class="d-block ms-4 align-self-center">
                             <h4 class="fw-semibold text-primary">
                                 Mail address</h4>
-                            <span>supprot22@gmail.com</span>
+                            <span>{{ $company->social_email }}</span>
                         </div>
                     </div>
                 </div>
