@@ -175,6 +175,28 @@ class UserController extends Controller
      }
      //End Method 
 
+     public function ProcessPayment(Request $request, $transactionId){
+
+        $request->validate([
+            'user_transaction_id' => 'required|string'
+        ]);
+
+        $transaction = Transaction::findOrFail($transactionId);
+
+        $transaction->update([
+            'transaction_id' => $request->user_transaction_id,
+            'status' => 'pending'
+        ]);
+
+        $notification = array(
+            'message' => 'Your Payment details have been submiited. Plz wait for admin verification',
+            'alert-type' => 'warning'
+        ); 
+           return redirect()->route('billing.upgrade')->with($notification); 
+
+     }
+     //End Method 
+
 
 
 

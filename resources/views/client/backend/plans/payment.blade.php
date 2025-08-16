@@ -10,8 +10,9 @@
                 </div>
 
     <div class="card-body">
-        <form action="">
-            
+        <form action="{{ route('plans.processPayment', $transaction->id) }}" method="POST">
+            @csrf
+
             <input type="hidden" name="transaction_id" value="{{ $transaction->id }}" >
             <div class="mb-4">
         <p class="text-white">Please transfer ${{ number_format($transaction->amount, 2) }} to the following account:</p>
