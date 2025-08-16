@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Plan;
+use App\Models\Transaction;
 
 class PlanController extends Controller
 {
@@ -77,6 +78,13 @@ class PlanController extends Controller
         );
 
         return redirect()->back()->with($notification); 
+
+    }
+    //End Method 
+
+    public function AllOrders(){
+        $orders = Transaction::with(['user','plan'])->get();
+        return view('admin.backend.transaction.all_transaction',compact('orders'));
 
     }
     //End Method 

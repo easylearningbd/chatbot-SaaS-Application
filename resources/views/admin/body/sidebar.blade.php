@@ -61,6 +61,13 @@
     </li>
 
     <li class="side-nav-item">
+        <a href="{{ route('all.orders') }}" class="side-nav-link">
+            <span class="menu-icon"><i class="ti ti-mailbox"></i></span>
+            <span class="menu-text"> All Orders </span>
+        </a>
+    </li>
+
+    <li class="side-nav-item">
         <a data-bs-toggle="collapse" href="#sidebarInvoice" aria-expanded="false" aria-controls="sidebarInvoice" class="side-nav-link">
             <span class="menu-icon"><i class="ti ti-invoice"></i></span>
             <span class="menu-text"> Invoice</span>
