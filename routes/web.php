@@ -88,7 +88,8 @@ Route::controller(PlanController::class)->group(function(){
 
 
 Route::controller(PlanController::class)->group(function(){
-    Route::get('/all/orders','AllOrders')->name('all.orders');  
+    Route::get('/all/orders','AllOrders')->name('all.orders');
+    Route::post('/update/transaction/{id}','UpdateTransaction')->name('update.transaction');  
 
 });
 

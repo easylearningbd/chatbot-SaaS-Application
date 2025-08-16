@@ -89,6 +89,29 @@ class PlanController extends Controller
     }
     //End Method 
 
+    public function UpdateTransaction(Request $request, $id){
+        $transaction = Transaction::findOrFail($id);
+        $newStatus = $request->input('status');
+
+        $transaction->status = $newStatus;
+        $transaction->save();
+
+        if ($newStatus === 'approved') {
+            $user = $transaction->user;
+            $user->plan_id = $transaction->plan_id; // Update user plan_id to the new plan
+            $user->save();
+        }
+
+        $notification = array(
+            'message' => 'Transaction Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.orders')->with($notification);  
+
+    }
+      //End Method 
+
 
 
 }
