@@ -50,6 +50,8 @@ Route::controller(CompanySettingController::class)->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/plans/subscribe/{planId}','SubscribePlan')->name('plans.subscribe');
+
+    Route::get('/plans/payment/{transactionId}','ShowPaymentForm')->name('plans.payment');
    
 
 });
