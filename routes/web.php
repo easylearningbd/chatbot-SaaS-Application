@@ -48,6 +48,13 @@ Route::controller(CompanySettingController::class)->group(function(){
 });
 
 
+Route::controller(UserController::class)->group(function(){
+    Route::get('/plans/subscribe/{planId}','SubscribePlan')->name('plans.subscribe');
+   
+
+});
+
+
 
 }); 
 //// End Only Acceessable for User 

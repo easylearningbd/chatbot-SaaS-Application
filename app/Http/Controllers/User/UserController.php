@@ -119,7 +119,7 @@ class UserController extends Controller
         return view('tanshir.chatbot_test');
     }
     //End Method 
-
+ 
     public function CompanyShow(string $slug){
         $company = Company::where('slug',$slug)->first();
 
@@ -130,6 +130,11 @@ class UserController extends Controller
         return view('company.company_page',compact('company'));
     }
       //End Method 
+
+    public function SubscribePlan(Request $request, $planId){
+
+    }
+     //End Method 
 
 
 
