@@ -1,10 +1,42 @@
 
-
+document.addEventListener('DOMContentLoaded', () => {
+ 
 
 const CHATBOT_API_BASE_URL = 'http://127.0.0.1:8000/api';
-    const CHATBOT_ID = 4;
 
-    const chatbotContainer = document.getElementById('saas-chatbot-widget');
+    const chatbotWidgetContainer = document.getElementById('my-chatbot-widget');
+    if (!chatbotWidgetContainer) {
+        console.error('Chatbot widget container not found');
+        return;
+    }
+
+    const CHATBOT_ID = chatbotWidgetContainer.dataset.chatbotId;
+    if (!CHATBOT_ID) {
+        console.error('Chatbot widget Id not found');
+        return;
+    }
+
+
+    const chatbotContainer = document.createElement('div');
+    chatbotContainer.id = 'saas-chatbot-widget';
+    chatbotContainer.classList.add('chatbot-container');
+
+    chatbotContainer.innerHTML = `
+    <div class="chatbot-header" id="chatbot-header-dynamic">
+            <span>AI Assistant</span>
+            <button id="toggle-chatbot-btn-dynamic" class="text-white text-2xl leading-none">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages-dynamic">
+            <div class="message ai">Hello! How can I help you today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input-dynamic" class="chat-input" placeholder="Type your message...">
+            <button id="send-button-dynamic" class="send-button">Send</button>
+        </div> 
+    `;
+ 
+    chatbotWidgetContainer.appendChild(chatbotContainer); 
+    
     const chatbotHeader = document.getElementById('chatbot-header-dynamic');
     const toggleChatbotBtn = document.getElementById('toggle-chatbot-btn-dynamic');
     const chatMessages = document.getElementById('chat-messages-dynamic');
@@ -103,7 +135,7 @@ const CHATBOT_API_BASE_URL = 'http://127.0.0.1:8000/api';
         if (event.key === 'Enter') {
             sendMessage();
         }
-    });
+    }); 
 
     chatbotHeader.addEventListener('click', toggleChatbot);
     toggleChatbotBtn.addEventListener('click', (event) => {
@@ -115,3 +147,6 @@ const CHATBOT_API_BASE_URL = 'http://127.0.0.1:8000/api';
         chatbotContainer.style.opacity = '1';
         chatbotContainer.style.visibility = 'visible';
     },500); 
+
+
+});
