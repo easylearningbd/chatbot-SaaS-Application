@@ -9,6 +9,7 @@ use App\Http\Middleware\IsUser;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\KnowledgeDocumentController;
 use App\Http\Controllers\Admin\ChatbotController;
+use App\Http\Controllers\Admin\BlogController;
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\CompanySettingController;
@@ -93,6 +94,13 @@ Route::controller(PlanController::class)->group(function(){
 
 });
 
+
+
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/blogs','BlogList')->name('blog.list');
+      
+
+});
 
 
 
