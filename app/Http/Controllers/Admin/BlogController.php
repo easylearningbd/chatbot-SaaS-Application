@@ -42,6 +42,10 @@ class BlogController extends Controller
     }
      //End Method 
 
+     public function AdminBlogsShow(Blog $blog){
+        return view('admin.backend.blogs.blog_show',compact('blog'));
+     }
+      //End Method 
 
 
 
