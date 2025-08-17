@@ -61,8 +61,9 @@ class GenerateBlogPostJob implements ShouldQueue
             'error_message' => $e->getMessage(),
             'failed_at' => now()
            ]);
-        }
-        throw $e;
+           
+            throw $e;
+        } 
 
     }
 }
