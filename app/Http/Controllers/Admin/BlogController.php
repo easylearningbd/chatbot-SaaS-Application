@@ -47,6 +47,19 @@ class BlogController extends Controller
      }
       //End Method 
 
+      public function AdminBlogsDelete($id){
+       
+        Blog::find($id)->delete();
+
+         $notification = array(
+            'message' => 'Blog Deleted Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->back()->with($notification); 
+
+      }
+       //End Method 
+
 
 
 } 
