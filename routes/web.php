@@ -98,6 +98,8 @@ Route::controller(PlanController::class)->group(function(){
 
 Route::controller(BlogController::class)->group(function(){
     Route::get('/blogs','BlogList')->name('blog.list');
+    Route::get('/admin/blogs/create','AdminBlogsCreate')->name('admin.blogs.create');
+    Route::post('/admin/blogs/store','AdminBlogsStore')->name('admin.blogs.store');
       
 
 });

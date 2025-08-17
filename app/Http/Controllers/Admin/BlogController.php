@@ -15,6 +15,30 @@ class BlogController extends Controller
     }
     //End Method 
 
+    public function AdminBlogsCreate(){
+        return view('admin.backend.blogs.blog_create');
+    }
+    //End Method 
+
+    public function AdminBlogsStore(Request $request){
+        $request->validate([
+            'title' => 'required|string'
+        ]);
+
+        $blog = Blog::create([
+            'title' => $request->title,
+            'status' => 'pending',
+        ]);
+
+        $notification = array(
+            'message' => 'Blog post generate Successfully It may takes little time',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->route('blog.list')->with($notification); 
+
+    }
+     //End Method 
+
 
 
 
